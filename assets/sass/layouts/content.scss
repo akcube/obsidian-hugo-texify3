@@ -197,6 +197,7 @@ button.copy-button {
 }
 
 .content p {
+  font-size: 100%;
   text-align: justify;
 }
 
@@ -210,26 +211,33 @@ button.copy-button {
 }
 
 .content.numbered-subtitles {
-  counter-reset: section-h2;
+  counter-reset: section-h1;
+  h1 {
+    counter-reset: section-h2;
+    &:before {
+      counter-increment: section-h1;
+      content: counter(section-h1) " ";
+    }
+  }
   h2 {
     counter-reset: section-h3;
     &:before {
       counter-increment: section-h2;
-      content: counter(section-h2) " ";
+      content: counter(section-h1) "." counter(section-h2) " ";
     }
   }
   h3 {
     counter-reset: section-h4;
     &:before {
       counter-increment: section-h3;
-      content: counter(section-h2) "." counter(section-h3) " ";
+      content: counter(section-h1) "." counter(section-h2) "." counter(section-h3) " ";
     }
   }
   h4 {
     counter-reset: section-h5;
     &:before {
       counter-increment: section-h4;
-      content: counter(section-h2) "." counter(section-h3) "."
+      content: counter(section-h1) "." counter(section-h2) "." counter(section-h3) "."
         counter(section-h4) " ";
     }
   }
@@ -237,50 +245,59 @@ button.copy-button {
     counter-reset: section-h6;
     &:before {
       counter-increment: section-h5;
-      content: counter(section-h2) "." counter(section-h3) "."
+      content: counter(section-h1) "." counter(section-h2) "." counter(section-h3) "."
         counter(section-h4) "." counter(section-h5) " ";
     }
   }
   h6 {
     &:before {
       counter-increment: section-h6;
-      content: counter(section-h2) "." counter(section-h3) "."
+      content: counter(section-h1) "." counter(section-h2) "." counter(section-h3) "."
         counter(section-h4) "." counter(section-h5) "." counter(section-h6) " ";
     }
   }
 }
+
 .toc.numbered-subtitles {
-  counter-reset: ul-h2;
+  counter-reset: toc-section-h1;
   li {
-    counter-reset: ul-h3;
+    counter-reset: toc-section-h2;
     &:before {
-      counter-increment: ul-h2;
-      content: counter(ul-h2) " ";
+      counter-increment: toc-section-h1;
+      content: counter(toc-section-h1) " ";
     }
     li {
-      counter-reset: ul-h4;
+      counter-reset: toc-section-h3;
       &:before {
-        counter-increment: ul-h3;
-        content: counter(ul-h2) "." counter(ul-h3) " ";
+        counter-increment: toc-section-h2;
+        content: counter(toc-section-h1) "." counter(toc-section-h2) " ";
       }
       li {
-        counter-reset: ul-h5;
+        counter-reset: toc-section-h4;
         &:before {
-          counter-increment: ul-h4;
-          content: counter(ul-h2) "." counter(ul-h3) "." counter(ul-h4) " ";
+          counter-increment: toc-section-h3;
+          content: counter(toc-section-h1) "." counter(toc-section-h2) "." counter(toc-section-h3) " ";
         }
         li {
-          counter-reset: ul-h6;
+          counter-reset: toc-section-h5;
           &:before {
-            counter-increment: ul-h5;
-            content: counter(ul-h2) "." counter(ul-h3) "." counter(ul-h4) "."
-              counter(ul-h5) " ";
+            counter-increment: toc-section-h4;
+            content: counter(toc-section-h1) "." counter(toc-section-h2) "." counter(toc-section-h3) "."
+              counter(toc-section-h4) " ";
           }
           li {
+            counter-reset: toc-section-h6;
             &:before {
-              counter-increment: ul-h6;
-              content: counter(ul-h2) "." counter(ul-h3) "." counter(ul-h4) "."
-                counter(ul-h5) "." counter(ul-h6) " ";
+              counter-increment: toc-section-h5;
+              content: counter(toc-section-h1) "." counter(toc-section-h2) "." counter(toc-section-h3) "."
+                counter(toc-section-h4) "." counter(toc-section-h5) " ";
+            }
+            li {
+              &:before {
+                counter-increment: toc-section-h6;
+                content: counter(toc-section-h1) "." counter(toc-section-h2) "." counter(toc-section-h3) "."
+                  counter(toc-section-h4) "." counter(toc-section-h5) "." counter(toc-section-h6) " ";
+              }
             }
           }
         }
@@ -288,3 +305,4 @@ button.copy-button {
     }
   }
 }
+

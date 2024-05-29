@@ -18,9 +18,7 @@
   {{ end }}
 
   <!-- favicon -->
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ .Site.BaseURL }}/images/apple-touch-icon.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ .Site.BaseURL }}/images/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ .Site.BaseURL }}/images/favicon-16x16.png">
+  <link rel="icon" href="{{ .Site.BaseURL }}/images/favicon.svg" sizes="any" type="image/svg+xml">
 
   <!-- keywords -->
   {{ if .Keywords }}
@@ -73,6 +71,38 @@
   <!-- twitter -->
   {{ template "_internal/twitter_cards.html" . }}
 
+  <!-- Setup Obsidian graph render -->
+  {{ $linkIndex := resources.Get "indices/linkIndex.json" | resources.Fingerprint }}
+  {{$contentIndex := resources.Get "indices/contentIndex.json" | resources.Fingerprint "md5" | resources.Minify }}
+  {{ $qgraphjs := resources.Get "quartz/js/graph.js" | resources.Fingerprint "md5" }}
+  <script src="{{ $qgraphjs.Permalink }}"></script>
+  <script>
+    const fetchData = Promise.all([
+        fetch("{{ $linkIndex.Permalink }}")
+          .then(data => data.json())
+          .then(data => ({
+            index: data.index,
+            links: data.links,
+          })),
+        fetch("{{ $contentIndex.Permalink }}")
+          .then(data => data.json()),
+      ])
+      .then(([{index, links}, content]) => ({
+        index,
+        links,
+        content,
+      }))
+      window.addEventListener("DOMContentLoaded", () => {
+	const drawGlobal = {{$.Site.Data.graphConfig.enableGlobalGraph}};
+        drawGraph(
+          {{strings.TrimRight "/" .Site.BaseURL}},
+          drawGlobal,
+          {{$.Site.Data.graphConfig.paths}},
+          drawGlobal ? {{$.Site.Data.graphConfig.globalGraph}} : {{$.Site.Data.graphConfig.localGraph}}
+        );
+      });
+  </script>
+
   {{ block "head" . }}{{ end }}
 </head>
 
@@ -84,7 +114,7 @@
   </div>
 
   <!-- javascript -->
-  <script src='{{ "js/script.js" | absURL }}' defer></script>
+  <script src='{{ "js/script.js" | absURL }}'></script>
 
   <!-- custom css -->
   {{ range .Site.Params.customCSS }}

@@ -10,7 +10,7 @@
 
 {{ define "main" }}
 <main id="main" class="post">
-  {{ if ne .Section "posts"}}
+  {{ if ne .Section "blog"}}
   <article class="content {{ if .Site.Params.numberedSubtitles }}numbered-subtitles{{ end }}">
     {{ .Content }}
   </article>
@@ -60,6 +60,13 @@
     <br></br>
   </div>
   {{ end }}
+
+  <!-- Obsidian Graph Viewer -->
+  <div>
+      {{partial "quartz/graph.html" .}}
+  </div>
+  <!-- End Obsidian Graph Viewer -->
+
   {{ if cond (ne .Params.toc nil) .Params.toc .Site.Params.toc }}
   {{ if ne .TableOfContents "<nav id=\"TableOfContents\"></nav>" }}
   <details>

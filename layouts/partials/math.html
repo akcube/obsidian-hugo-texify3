@@ -1,16 +1,9 @@
-<link rel="stylesheet" href='{{ "katex/katex.min.css" | relURL }}'>
-<script defer defer src='{{ "katex/katex.min.js" | relURL}}'></script>
-<script defer src='{{ "katex/contrib/auto-render.min.js" | relURL}}'></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        renderMathInElement(document.body, {
-          delimiters: [
-              {left: '$$', right: '$$', display: true},
-              {left: '$', right: '$', display: false},
-              {left: '\\(', right: '\\)', display: false},
-              {left: '\\[', right: '\\]', display: true}
-          ],
-          throwOnError : false
-        });
-    });
+  MathJax = {
+    tex: {
+      displayMath: [['\\[', '\\]'], ['$$', '$$']],  // block
+      inlineMath: [['\\(', '\\)'], ['$', '$']],      // inline
+    }
+  };
 </script>

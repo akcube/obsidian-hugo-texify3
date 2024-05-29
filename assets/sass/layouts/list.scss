@@ -8,15 +8,38 @@
       margin-left: 0.5rem;
       padding-left: $margin;
 
-      & > li {
+      & > .post-item {
         align-items: center;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         line-height: 1.6;
 
-        & > time {
+        & > .post-content {
+          flex-grow: 1;
+        }
+
+        .post-title {
+          text-decoration: none;
+          transition: color 0.3s ease;
+        }
+
+        .post-date {
+          font-size: 16px;
           text-align: right;
+        }
+
+        .post-topics {
+          display: flex;
+        }
+
+        .topic-tab {
+          padding: 1px 10px;
+          margin-left: 10px;
+          border-radius: 20px;
+          background-color: #800080; /* Purple */
+          color: #fff;
+          font-size: 14px;
         }
       }
 
@@ -79,3 +102,4 @@
     }
   }
 }
+

@@ -44,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Dark mode toggle
 let darkMode = localStorage.getItem("darkMode");
+if (!darkMode) darkMode = "enabled"
+
 const darkModeToggle = document.querySelectorAll("#dark-mode-toggle");
 
 const enableDarkMode = () => {
@@ -53,7 +55,7 @@ const enableDarkMode = () => {
 
 const disableDarkMode = () => {
   document.body.classList.remove("darkmode");
-  localStorage.setItem("darkMode", null);
+  localStorage.setItem("darkMode", "disabled");
 };
 
 if (darkMode === "enabled") {

@@ -14,7 +14,7 @@ async function drawGraph(baseUrl, isHome, pathColors, graphConfig) {
   fontSize} = graphConfig;
 
   const container = document.getElementById("graph-container")
-  container.textContent = ""
+  if(container) container.textContent = ""
   const { index, links, content } = await fetchData
 
   // Use .pathname to remove hashes / searchParams / text fragments

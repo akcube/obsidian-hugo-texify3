@@ -9,14 +9,22 @@
       padding-left: $margin;
 
       & > .post-item {
-        align-items: center;
+        align-items: left;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         line-height: 1.6;
+	
+	@media screen and (max-width: $mobile-breakpoint) {
+	  margin: 5px 0px;
+        }
 
         & > .post-content {
           flex-grow: 1;
+	  @media screen and (max-width: $mobile-breakpoint) {
+            display: flex;
+            flex-direction: column;
+          }
         }
 
         .post-title {
@@ -27,6 +35,9 @@
         .post-date {
           font-size: 16px;
           text-align: right;
+	  @media screen and (max-width: $mobile-breakpoint) {
+	    font-size: 14px;
+          }
         }
 
         .post-topics {
@@ -34,12 +45,11 @@
         }
 
         .topic-tab {
-          padding: 1px 10px;
           margin-left: 10px;
-          border-radius: 20px;
-          background-color: #800080; /* Purple */
-          color: #fff;
-          font-size: 14px;
+          font-size: 15px;
+	  @media screen and (max-width: $mobile-breakpoint) {
+            display: none;
+          }
         }
       }
 

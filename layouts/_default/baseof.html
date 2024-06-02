@@ -103,6 +103,35 @@
       });
   </script>
 
+  <!-- Make headings direct to heading-permalinks -->
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      var headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+      headings.forEach(function(heading) {
+        if (heading.id) {
+          var a = document.createElement('a');
+          a.innerHTML = heading.innerHTML;
+          a.href = '#' + heading.id;
+          // Remove link default styles
+          a.style.textDecoration = 'none';
+          a.style.color = 'inherit';
+          // Prevent anchor from inheriting any styles
+          a.style.display = 'inline'; // Ensure the link behaves like text
+          a.style.cursor = 'pointer'; // Set cursor to pointer on hover
+          // Add link hover styles if needed
+          a.addEventListener('mouseenter', () => {
+            a.style.textDecoration = 'underline';
+          });
+          a.addEventListener('mouseleave', () => {
+            a.style.textDecoration = 'none';
+          });
+          heading.innerHTML = '';
+          heading.appendChild(a);
+        }
+      });
+    });
+  </script>
+
   {{ block "head" . }}{{ end }}
 </head>
 

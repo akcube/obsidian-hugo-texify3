@@ -21,14 +21,39 @@ body {
 
 a {
   text-decoration: none;
+  transition: color 0.2s ease, opacity 0.2s ease;
 
   &:link {
     color: var(--blue);
+    opacity: 0.9;
   }
 
-  &:hover,
+  &:hover {
+    color: var(--blue);
+    opacity: 1;
+  }
+
   &:visited {
     color: var(--blue-dim);
+    opacity: 0.8;
+  }
+}
+
+// Dark mode uses aqua
+.darkmode a {
+  &:link {
+    color: var(--aqua);
+    opacity: 0.9;
+  }
+
+  &:hover {
+    color: var(--aqua);
+    opacity: 1;
+  }
+
+  &:visited {
+    color: var(--aqua-dim);
+    opacity: 0.8;
   }
 }
 
@@ -100,6 +125,10 @@ hr {
     @media screen and (min-width: $mobile-breakpoint) {
       font-size: 2.8rem;
     }
+
+    a {
+      text-decoration: none;
+    }
   }
 
   & > nav {
@@ -117,6 +146,10 @@ hr {
       text-decoration: none;
       display: inline-block;
       position: relative;
+      padding: 8px 12px;
+      min-height: 44px; // WCAG 2.1 Level AAA touch target size
+      display: inline-flex;
+      align-items: center;
 
       &:after {
         background-color: var(--fg1);

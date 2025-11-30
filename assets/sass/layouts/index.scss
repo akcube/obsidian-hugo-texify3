@@ -11,6 +11,18 @@
     grid-template-columns: 1fr;
   }
 
+  .index ol li {
+    a.link {
+      display: inline-block;
+      line-height: 1.5;
+
+      @media screen and (max-width: $mobile-breakpoint) {
+        padding: 8px 4px;
+        min-height: 44px; // WCAG 2.1 Level AAA touch target size
+      }
+    }
+  }
+
   .sidebar {
     flex: 1;
 
@@ -18,8 +30,9 @@
       order: 1;
     }
 
-    h3.taxonomy > a {
+    h2.taxonomy > a {
       color: var(--fg);
+      text-decoration: none;
 
       &:visited {
         color: var(--fg);
@@ -44,7 +57,10 @@
       li a {
         text-decoration: none;
         display: block;
-        padding: 2px 12px;
+        padding: 8px 12px;
+        min-height: 44px; // WCAG 2.1 Level AAA touch target size
+        display: flex;
+        align-items: center;
         color: var(--fg);
         transition: color 0.3s, background-color 0.3s;
 

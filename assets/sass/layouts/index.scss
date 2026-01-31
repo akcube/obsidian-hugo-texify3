@@ -119,18 +119,23 @@
 
     @media screen and (max-width: $mobile-breakpoint) {
       // Mobile: Fixed position slide-in panel from right
+      // Using transform instead of right for hardware-accelerated animation
       position: fixed;
       top: 0;
-      right: -300px;
+      right: 0;
       width: 280px;
-      max-width: 85vw;
+      max-width: 75vw; // Reduced from 85vw - sidebar takes max 3/4 of screen
       height: 100vh;
       z-index: 999;
       background-color: var(--bg);
       padding: 1rem;
       box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
       overflow-y: auto;
-      transition: right 0.3s ease;
+
+      // Properly hide the sidebar using visibility + transform
+      visibility: hidden;
+      transform: translateX(100%); // Slide completely off-screen
+      transition: transform 0.3s ease, visibility 0.3s ease;
     }
 
     h2.taxonomy > a {
@@ -180,6 +185,7 @@
 // When checkbox is checked, slide in the sidebar on mobile
 .sidebar-checkbox:checked ~ .grid-container .sidebar {
   @media screen and (max-width: $mobile-breakpoint) {
-    right: 0;
+    visibility: visible;
+    transform: translateX(0); // Slide into view
   }
 }

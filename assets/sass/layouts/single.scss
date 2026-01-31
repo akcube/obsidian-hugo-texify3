@@ -27,158 +27,17 @@
     padding: 0.2em 0.3em;
   }
 
-  // Mobile tags toggle button - hidden on desktop
-  .tags-toggle {
-    display: none;
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      position: fixed;
-      bottom: 80px;
-      right: 20px;
-      z-index: 100;
-      background-color: var(--bg_s);
-      color: var(--fg);
-      border: 2px solid var(--fg4);
-      border-radius: $radius;
-      padding: 0.75rem 1rem;
-      cursor: pointer;
-      font-size: 0.9rem;
-      font-family: inherit;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      transition: background-color 0.2s ease, transform 0.2s ease;
-
-      &:hover {
-        background-color: var(--bg_h);
-      }
-
-      &:active {
-        transform: scale(0.95);
-      }
-
-      svg {
-        flex-shrink: 0;
-      }
-    }
-  }
-
-  // Tags container - inline on desktop, panel on mobile
+  // Tags container - always inline
   .tags-container {
     text-align: center;
     margin-bottom: $margin;
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      position: fixed;
-      top: 0;
-      right: -300px;
-      width: 280px;
-      max-width: 80vw;
-      height: 100vh;
-      z-index: 1000;
-      transition: right 0.3s ease;
-      margin-bottom: 0;
-      text-align: left;
-
-      &.open {
-        right: 0;
-      }
-    }
   }
 
-  // Tags panel styling
-  .tags-panel {
-    @media screen and (max-width: $mobile-breakpoint) {
-      background-color: var(--bg);
-      height: 100%;
-      padding: 1rem;
-      box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
-      overflow-y: auto;
-    }
-  }
-
-  // Panel header - hidden on desktop
-  .tags-panel-header {
-    display: none;
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 1rem;
-      margin-bottom: 1rem;
-      border-bottom: 1px solid var(--fg4);
-
-      span {
-        font-size: 1.2rem;
-        font-weight: bold;
-        color: var(--fg);
-      }
-    }
-  }
-
-  // Close button for panel
-  .tags-close {
-    display: none;
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-      border: none;
-      color: var(--fg);
-      cursor: pointer;
-      padding: 0.5rem;
-      border-radius: $radius;
-      transition: background-color 0.2s ease;
-
-      &:hover {
-        background-color: var(--bg_s);
-      }
-    }
-  }
-
-  // Tags list
+  // Tags list - inline on all devices
   .tags-list {
     .tag {
       display: inline-block;
       margin: 0.25rem;
-    }
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      .tag {
-        display: block;
-        margin: 0.5rem 0;
-        padding: 0.75rem 1rem;
-        text-align: left;
-        font-size: 1rem;
-
-        &:hover {
-          background-color: var(--bg_h);
-        }
-      }
-    }
-  }
-
-  // Overlay for mobile panel
-  .tags-overlay {
-    display: none;
-
-    @media screen and (max-width: $mobile-breakpoint) {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 999;
-
-      &.open {
-        display: block;
-      }
     }
   }
 

@@ -83,34 +83,3 @@ function topFunction() {
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
 }
 
-// Mobile tags panel toggle
-function toggleTagsPanel() {
-    const tagsContainer = document.querySelector('.tags-container');
-    const tagsOverlay = document.querySelector('.tags-overlay');
-
-    if (tagsContainer && tagsOverlay) {
-        tagsContainer.classList.toggle('open');
-        tagsOverlay.classList.toggle('open');
-
-        // Prevent body scroll when panel is open
-        if (tagsContainer.classList.contains('open')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
-    }
-}
-
-// Close tags panel on escape key
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        const tagsContainer = document.querySelector('.tags-container');
-        const tagsOverlay = document.querySelector('.tags-overlay');
-
-        if (tagsContainer && tagsContainer.classList.contains('open')) {
-            tagsContainer.classList.remove('open');
-            tagsOverlay.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-    }
-});
